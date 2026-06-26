@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from ..database import Base
 
@@ -7,11 +7,11 @@ from ..database import Base
 class Category(Base):
     __tablename__ = "categories"
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, nullable=False, index=True)
-    slug = Column(String, unique=True, nullable=False, index=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    name: Mapped[str] = mapped_column(String, unique=True, nullable=False, index=True)
+    slug: Mapped[str] = mapped_column(String, unique=True, nullable=False, index=True)
 
-    products = relationship("Product", back_populates="category")
+    products: Mapped[list["Product"]] = relationship(back_populates="category")
 
     def __repr__(self) -> str:
         return f"<Category(id={self.id}, name='{self.name}')>"
