@@ -30,7 +30,7 @@ class CartItem(BaseModel):
     image_url: Optional[str] = Field(None, description="Product image URL")
 
 
-class CartResponce(BaseModel):
+class CartResponse(BaseModel):
     items: list[CartItem] = Field(..., description="List of items in cart")
     total: float = Field(..., description="Total cart price")
     items_count: int = Field(..., description="Total number of items in cart")

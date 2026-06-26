@@ -1,10 +1,7 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
-from backend.app.models.category import Category
-
 from ..repositories.category_repository import CategoryRepository
-from ..repositories.product_repository import ProductRepository
 from ..schemas.category import CategoryCreate, CategoryResponse
 
 

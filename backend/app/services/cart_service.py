@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from backend.app.schemas import cart
 
 from ..repositories.product_repository import ProductRepository
-from ..schemas.cart import CartItem, CartItemCreate, CartItemUpdate, CartResponce
+from ..schemas.cart import CartItem, CartItemCreate, CartItemUpdate, CartResponse
 
 
 class CartService:
@@ -52,9 +52,9 @@ class CartService:
         del cart_data[product_id]
         return cart_data
 
-    def get_cart_details(self, cart_data: dict[int, int]) -> CartResponce:
+    def get_cart_details(self, cart_data: dict[int, int]) -> CartResponse:
         if not cart_data:
-            return CartResponce(items=[], total=0.0, items_count=0)
+            return CartResponse(items=[], total=0.0, items_count=0)
 
         product_ids = list(cart_data.keys())
         products = self.product_repository.get_multiple_by_ids(product_ids)
@@ -80,6 +80,6 @@ class CartService:
                 total_price += subtotal
                 total_items += quantity
 
-        return CartResponce(
+        return CartResponse(
             items=cart_items, total=round(total_price), items_count=total_items
         )
