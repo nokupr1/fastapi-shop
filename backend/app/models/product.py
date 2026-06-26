@@ -1,0 +1,23 @@
+from datetime import datetime
+
+from sqlalchemy import Column, Float, Integer, String, Text
+from sqlalchemy.orm import relationship
+from sqlalchemy.orm.properties import ForeignKey
+from sqlalchemy.sql.sqltypes import DateTime
+
+from ..database import Base
+
+
+class Product(Base):
+    __tablename__ = "products"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False, index=True)
+    description = Column(Text)
+    price = Column(Float, nullable=False)
+    category_id = Column(Integer, ForeignKey("categories.id"), nullable=False)
+    image_url = Column(String)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    def __repr__(self) -> str:
+        return f"<Product(id={self.id}, name='{self.name}', price={self.price})>"
