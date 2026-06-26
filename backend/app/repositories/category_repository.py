@@ -16,7 +16,7 @@ class CategoryRepository:
     def get_by_id(self, category_id: int) -> Optional[Category]:
         return self.db.query(Category).filter(Category.id == category_id).first()
 
-    def get_by_slug(self, category_slug: str) -> Optional[Category]
+    def get_by_slug(self, category_slug: str) -> Optional[Category]:
         return self.db.query(Category).filter(Category.slug == category_slug).first()
 
     def create(self, category_data: CategoryCreate) -> Category:

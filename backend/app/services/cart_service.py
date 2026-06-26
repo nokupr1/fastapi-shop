@@ -1,8 +1,6 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
-from backend.app.schemas import cart
-
 from ..repositories.product_repository import ProductRepository
 from ..schemas.cart import CartItem, CartItemCreate, CartItemUpdate, CartResponse
 

@@ -15,7 +15,7 @@ def get_products(db: Session = Depends(get_db)):
 
 
 @router.get(
-    f"/{product_id}", response_model=ProductResponse, status_code=status.HTTP_200_OK
+    "/{product_id}", response_model=ProductResponse, status_code=status.HTTP_200_OK
 )
 def get_product(product_id: int, db: Session = Depends(get_db)):
     service = ProductService(db)
@@ -23,7 +23,7 @@ def get_product(product_id: int, db: Session = Depends(get_db)):
 
 
 @router.get(
-    f"/category/{category_id}",
+    "/category/{category_id}",
     response_model=ProductResponse,
     status_code=status.HTTP_200_OK,
 )
